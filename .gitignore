@@ -37,7 +37,6 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-htmlcov/
 .tox/
 .nox/
 .coverage
@@ -50,6 +49,10 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+*.csv
+!locust_report_stats.csv
+
+*.db
 
 # Translations
 *.mo
@@ -205,3 +208,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
