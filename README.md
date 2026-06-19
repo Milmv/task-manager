@@ -5,6 +5,11 @@
 3) pip install -r requirements.txt
 4) uvicorn main:app --reload
 
+### Запуск через Docker
+1) docker-compose up -d --build
+2) docker-compose ps
+3) docker-compose down
+
 ## О запросах
 
 1) сваггер - http://localhost:8000/docs
