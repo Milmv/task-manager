@@ -1,14 +1,19 @@
-.PHONY: test test-cov test-html locust clean
+.PHONY: test test-cov test-html test-docker locust clean
 
 test:
-	pytest tests/ -v
+	USE_SQLITE=true pytest tests/ -v
 
 test-cov:
-	pytest tests/ --cov=. --cov-report=term-missing --cov-fail-under=90
+	USE_SQLITE=true pytest tests/ --cov=. --cov-report=term-missing --cov-fail-under=90
 
 test-html:
-	pytest tests/ --cov=. --cov-report=html --cov-report=term-missing
+	USE_SQLITE=true pytest tests/ --cov=. --cov-report=html --cov-report=term-missing
 	open htmlcov/index.html
+test-docker:
+	docker-compose up -d --build
+	sleep 5
+	docker-compose exec app pytest tests/ -v
+	docker-compose down
 
 locust:
 	uvicorn main:app --port 8000 &

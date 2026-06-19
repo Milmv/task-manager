@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, Enum as SQLEnum
+from sqlalchemy import Column, Integer, String, DateTime, Text, Enum as SQLEnum
 from datetime import datetime, timezone
 import enum
 from database import Base
@@ -21,8 +21,8 @@ class Task(Base):
     __tablename__ = "tasks"
 
     id = Column(Integer, primary_key=True)
-    title = Column(String)
-    description = Column(String, default="")
+    title = Column(String(255), nullable=False)
+    description = Column(Text, default="")
     status = Column(SQLEnum(StatusEnum), default=StatusEnum.waiting)
     priority = Column(SQLEnum(PriorityEnum), default=PriorityEnum.medium)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
